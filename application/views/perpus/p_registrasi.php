@@ -1,40 +1,70 @@
 <!-- Sign up form -->
-<section class="signup">
-    <div class="container">
-        <div class="signup-content">
-            <div class="signup-form">
-                <h2 class="form-title">Sign up</h2>
-                <form method="post" class="register-form" action="<?= base_url('login/registrasi') ?>">
 
-                    <div class="form-group">
-                        <input type="text" name="nama" placeholder="Nama" value="<?= set_value('nama') ?>" autocomplete="off">
-                        <small class="text-danger"><?= form_error('nama') ?></small>
-                    </div>
+<div class="register-box">
+  <div class="register-logo">
+    <a href=""><b>THE</b>Perpustakaan</a>
+  </div>
 
-                    <div class="form-group">
-                        <input type="text" name="username" placeholder="Username" value="<?= set_value('username') ?>" autocomplete="off">
-                        <small class="text-danger"><?= form_error('username') ?></small>
-                    </div>
+  <div class="card">
+    <div class="card-body register-card-body">
+      <p class="login-box-msg">Register Akun Baru</p>
 
-                    <div class="form-group">
-                        <input type="password" name="password" placeholder="Password" value="<?= set_value('password') ?>" autocomplete="off">
-                        <small class="text-danger"><?= form_error('password') ?></small>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" name="repass" placeholder="Re-Password" autocomplete="off">
-                        <small class="text-danger"><?= form_error('repass') ?></small>
-                    </div>
-
-                    <div class="form-group form-button">
-                                <input type="submit" class="form-submit">
-                            </div>
-                </form>
+      <form action="<?= base_url('login/registrasi') ?>" method="post">
+        <div class="input-group mb-3">
+          <input type="text" name="nama" class="form-control" value="<?= set_value('nama') ?>" placeholder="Nama">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
             </div>
-            <div class="signup-image">
-                <figure><img src="<?= base_url('regform/') ?>images/signup-image.jpg" alt="sing up image"></figure>
-                <a href="<?= base_url('Login') ?>" class="signup-image-link">I am already member</a>
-            </div>
+          </div>
         </div>
+        <small class="text-danger"><?= form_error('nama') ?></small>
+        
+        <div class="input-group mb-3">
+          <input type="text" name="username" class="form-control" value="<?= set_value('username') ?>" placeholder="Username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('username') ?></small>
+        
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" value="<?= set_value('password') ?>" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('password') ?></small>
+        
+        <div class="input-group mb-3">
+          <input type="password" name="repass" class="form-control" placeholder="Re-Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-unlock"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('repass') ?></small>
+
+        <div class="row">
+          <div class="col-8">
+            
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <a href="<?= base_url('Login') ?>" class="text-center">Sudah Memiliki Akun ? Masuk !</a>
     </div>
-</section>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
