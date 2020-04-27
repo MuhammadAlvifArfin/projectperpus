@@ -24,7 +24,7 @@
                 <?php echo validation_errors(); ?>
               </small>
             </div>
-            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
             <div class="table-responsive p-0">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -49,7 +49,7 @@
                   <td>*********</td>
                   <td> <center><button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
                   | 
-                  <a class="pegawai-hapus btn btn-danger" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
+                  <a class="btn btn-danger hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
                   </center>
                 </tr>
 

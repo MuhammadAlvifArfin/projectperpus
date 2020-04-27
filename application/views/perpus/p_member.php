@@ -19,14 +19,12 @@
             <div class="form-group">
               <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal"><i class="fas fa-user-plus"></i></button>
             </div>
-            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
-
             <div>
               <small class="text-danger">
                 <?php echo validation_errors(); ?>
               </small>
             </div>
-              
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
             <div class="table-responsive p-0">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -54,7 +52,7 @@
                       <center>
                       <button data-toggle="modal" data-target="#update<?php echo $m->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
                         | 
-                        <a href="<?= base_url('admin/delete_member/'.$m->id) ?>" class="btn btn-danger member-hapus"><i class="fas fa-trash"></i></a>
+                        <a href="<?= base_url('admin/delete_member/'.$m->id) ?>" class="btn btn-danger hapus-member"><i class="fas fa-trash"></i></a>
                     </center>
                     </td>
                   </tr>
