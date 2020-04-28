@@ -75,22 +75,26 @@
               <form method="POST" action=" <?= base_url('admin/tambah_transaksi') ?> ">
 
               <div class="form-group">
-                <label>Nama Member</label>
-                <select name="nama_member" class="form-control">
-                <option  value="">---Pilih Member---</option>                    
-                 <?php foreach($member as $m) { ?>
-                   <option><?php echo $m->nama;?></option>
-                 <?php } ?>
-                </select>
-              </div>
+                <label>Nama Member</label><br>
+                  <select class="form-control" id="select_member" name="nama_member" style="width: 466px;">
+                  <option  value=""></option>
+                   <?php foreach($member as $m) { ?>
+                     <option>
+                       <?php echo $m->nama;?>
+                      </option>
+                   <?php } ?>
+                  </select>
+                </div>
 
               <div class="form-group">
-                <label>Judul Buku</label>
-                <select name="judul_buku" class="form-control">
-                <option  value="">---Pilih Buku---</option>                    
-                 <?php foreach($buku as $b) { ?>
-                   <option><?php echo $b->judul;?></option>
-                 <?php } ?>
+                <label>Judul Buku</label><br>
+                <select name="judul_buku" id="select_buku" class="form-control" style="width: 466px;">
+                  <option value=""></option>
+                  <?php foreach($buku as $b) { ?>
+                    <option>
+                      <?php echo $b->judul;?>
+                    </option>
+                  <?php } ?>
                 </select>
               </div>
 

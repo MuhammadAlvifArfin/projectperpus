@@ -44,6 +44,19 @@
 <script src="<?= base_url('assets/') ?>plugins/sweetalert2/myscript.js"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url('assets/') ?>plugins/select2/js/select2.min.js"></script>
+<script>
+  $(document).ready(function () {
+                $("#select_member").select2({
+                    placeholder: "---Silahkan Pilih Member---"
+                });
+
+                $("#select_buku").select2({
+                    placeholder: "---Silahkan Pilih Buku---"
+                });
+            });
+</script>
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
