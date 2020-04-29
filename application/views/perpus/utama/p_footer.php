@@ -48,14 +48,18 @@
 <script src="<?= base_url('assets/') ?>plugins/select2/js/select2.min.js"></script>
 <script>
   $(document).ready(function () {
-                $("#select_member").select2({
-                    placeholder: "---Silahkan Pilih Member---"
-                });
+    $("#select_member").select2({
+      placeholder: "---Silahkan Pilih Member---"
+    });
 
-                $("#select_buku").select2({
-                    placeholder: "---Silahkan Pilih Buku---"
-                });
-            });
+    $("#select_buku").select2({
+      placeholder: "---Silahkan Pilih Buku---"
+    });
+
+    $(document).ready(function () {
+      $('.select').select2();
+    });
+  });
 </script>
 
 <!-- PAGE PLUGINS -->

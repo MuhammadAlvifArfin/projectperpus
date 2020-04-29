@@ -109,17 +109,6 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/buku');
 	}
 
-	function edit_buku($id)
-	{
-		$data['title'] 		= "Edit Data";
-		$where = array('id' => $id);
-		$dataB['buku'] = $this->Mainmodel->edit_buku($where, 'buku')->result();
-		$this->load->model('Mainmodel');
-		$this->load->view('perpus/utama/p_header',$data);
-		$this->load->view('perpus/p_edit_buku',$dataB);
-		$this->load->view('perpus/utama/p_footer');
-	}
-
 	function update_buku()
 	{
 		$id = $this->input->post('id');
@@ -230,17 +219,6 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	function edit_pegawai($id)
-	{
-		$data['title'] 		= "Edit Data";
-		$where = array('id' => $id);
-		$dataM['pegawai'] = $this->Mainmodel->edit_pegawai($where, 'pegawai')->result();
-		$this->load->model('Mainmodel');
-		$this->load->view('perpus/utama/p_header',$data);
-		$this->load->view('perpus/p_edit_pegawai',$dataM);
-		$this->load->view('perpus/utama/p_footer');
-	}
-
 	function update_pegawai()
 	{
 		$id = $this->input->post('id');
@@ -326,17 +304,6 @@ class Admin extends CI_Controller {
 		
 	}
 
-	function edit_member($id)
-	{
-		$data['title'] 		= "Edit Data";
-		$where = array('id' => $id);
-		$dataM['member'] = $this->Mainmodel->edit_member($where, 'member')->result();
-		$this->load->model('Mainmodel');
-		$this->load->view('perpus/utama/p_header',$data);
-		$this->load->view('perpus/p_edit_member',$dataM);
-		$this->load->view('perpus/utama/p_footer');
-	}
-
 	function update_member()
 	{
 		$id = $this->input->post('id');
@@ -400,19 +367,6 @@ class Admin extends CI_Controller {
 		$this->Mainmodel->delete_data($where, 'transaksi');
 		$this->session->set_flashdata('flash','Di Hapus');
 		redirect(base_url().'admin/transaksi');
-	}
-
-	function edit_transaksi($id)
-	{
-		$data['title'] 		= "Edit Data";
-		$where = array('id' => $id);
-		$dataT['buku'] = $this->Mainmodel->tampil_buku()->result();
-		$dataT['member'] = $this->Mainmodel->tampil_member()->result();	
-		$dataT['transaksi'] = $this->Mainmodel->edit_transaksi($where, 'transaksi')->result();
-		$this->load->model('Mainmodel');
-		$this->load->view('perpus/utama/p_header',$data);
-		$this->load->view('perpus/p_edit_transaksi',$dataT);
-		$this->load->view('perpus/utama/p_footer');
 	}
 
 	function update_transaksi()

@@ -29,18 +29,32 @@
                       <th>Judul Buku</th>
                       <th>Tanggal Peminjaman</th>
                       <th>Tanggal Kembali</th>
+                      <th>Lama Pinjam (Telat)</th>
+                      <th>Total Denda</th>
                       <th width="20%">Aksi</th>
                   </tr>
                   </thead>
                   <?php 
                     foreach($transaksi as $t){ 
+                      if ($t->tanggal_kembali=="0000-00-00") {	
+	                      $date1    = date_create($t->tanggal_pinjam);
+	                      $date2   = date_create(date('Y-m-d'));
+	                      $cek_telat = date_diff($date1,$date2); 
+	                      $telat  = $cek_telat->format("%a");
+                      }else{
+                       	$date1  = date_create($t->tanggal_pinjam);
+	                      $date2   = date_create($t->tangal_kembali);
+	                      $cek_telat = date_diff($date1,$date2); 
+	                      $telat = $cek_telat->format("%a");
+                      }
                   ?>
                   <tr>
                     <td><?= $t->id ?></td>
                     <td><?= $t->nama_member?></td>
                     <td><?= $t->judul_buku?></td>
                     <td><?= $t->tanggal_pinjam?></td>
-                    <td><?= $t->tanggal_kembali?></td>
+                    <td><?php if($telat>7){echo $telat." Hari (".($telat-7)." Hari)";}else{echo $telat." Hari(0)";}?></td>
+                    <td><?php if($telat>7){echo "RP.".($telat-7)*500;}else{echo "-";} ?></td>
                     <td> <center><button data-toggle="modal" data-target="#update<?php echo $t->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
                     |
                       <a href="<?= base_url('admin/delete_transaksi/'.$t->id) ?>" class="btn btn-danger hapus-transaksi"><i class="fas fa-trash"></i></a>
@@ -131,10 +145,10 @@
             <form method="POST" action="<?= base_url('admin/update_transaksi'); ?>" enctype="multipart/form-data">
 
               <div class="form-group">
-                <label>Nama Member</label>
+                <label>Nama Member</label><br>
                 <input type="hidden" name="id" class="form-control" value="<?=$t->id ?>">
 
-                <select name="nama_member" class="form-control">                
+                <select name="nama_member" class="form-control select" style="width: 466px;">                
                   <?php foreach($member as $m) { ?>
                     <option <?php  if($t->nama_member == $m->nama) { echo 'selected' ;}?>>
                     <?php echo $m->nama;?>
@@ -144,10 +158,10 @@
               </div>
 
               <div class="form-group">
-                <label>Judul Buku</label>
-                  <select name="judul_buku" class="form-control">
+                <label>Judul Buku</label><br>
+                  <select name="judul_buku" class="form-control select" style="width: 466px;">
                     <?php foreach($buku as $b) { ?>
-                      <option <?php  if($t->judul_buku == $b->judul) { echo 'selected' ;} else{echo "data hilang atau tidak ada";}?>>
+                      <option <?php  if($t->judul_buku == $b->judul) { echo 'selected' ;}?>>
                       <?php echo $b->judul;?>
                     </option>
                    <?php } ?>
