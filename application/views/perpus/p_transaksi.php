@@ -31,7 +31,8 @@
                       <th>Tanggal Kembali</th>
                       <th>Lama Pinjam (Telat)</th>
                       <th>Total Denda</th>
-                      <th width="20%">Aksi</th>
+                      <th>Buku Kembali</th>
+                      <th width="16%">Aksi</th>
                   </tr>
                   </thead>
                   <?php 
@@ -43,7 +44,7 @@
 	                      $telat  = $cek_telat->format("%a");
                       }else{
                        	$date1  = date_create($t->tanggal_pinjam);
-	                      $date2   = date_create($t->tangal_kembali);
+	                      $date2   = date_create($t->tanggal_kembali);
 	                      $cek_telat = date_diff($date1,$date2); 
 	                      $telat = $cek_telat->format("%a");
                       }
@@ -53,12 +54,33 @@
                     <td><?= $t->nama_member?></td>
                     <td><?= $t->judul_buku?></td>
                     <td><?= $t->tanggal_pinjam?></td>
-                    <td><?php if($telat>7){echo $telat." Hari (".($telat-7)." Hari)";}else{echo $telat." Hari(0)";}?></td>
-                    <td><?php if($telat>7){echo "RP.".($telat-7)*500;}else{echo "-";} ?></td>
-                    <td> <center><button data-toggle="modal" data-target="#update<?php echo $t->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
-                    |
-                      <a href="<?= base_url('admin/delete_transaksi/'.$t->id) ?>" class="btn btn-danger hapus-transaksi"><i class="fas fa-trash"></i></a>
-                    </center>
+
+                    <td>
+                      <?php if($t->tanggal_kembali!=="0000-00-00"){echo $t->tanggal_kembali;}else{echo "Belum Kembali";} ?>
+                    </td>
+
+                    <td>
+                      <?php if($telat>7){echo $telat." Hari (".($telat-7)." Hari)";}else{echo $telat." Hari(0)";}?>
+                    </td>
+
+                    <td>
+                      <?php if($telat>7){echo "RP.".($telat-7)*500;}else{echo "-";} ?>
+                    </td>
+
+                    <td>
+                      <center>
+                        <form action="<?= base_url('admin/kembali/'.$t->id) ?>" >
+                          <button type="submit" class="btn btn-warning"  <?php if($t->tanggal_kembali!=="0000-00-00"){echo "disabled";} ?> title="Buku Kembali"><i class="fas fa-cart-arrow-down"></i></button>
+                        </form> 
+                      </center>
+                    </td>
+                    
+                    <td>
+                      <center>  
+                        <button data-toggle="modal" data-target="#update<?php echo $t->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i> | 
+                        <a href="<?= base_url('admin/delete_transaksi/'.$t->id) ?>" class="btn btn-danger hapus-transaksi"><i class="fas fa-trash"></i></a>
+                      </center>
+                    </td>
                   </tr>
   
                   <?php } ?>
@@ -110,16 +132,6 @@
                     </option>
                   <?php } ?>
                 </select>
-              </div>
-
-              <div class="form-group">
-                <label>Tanggal Pinjam</label>
-                <input type="date" name="tanggal_pinjam" class="form-control">
-              </div>
-
-              <div class="form-group">
-                <label>Tanggal Kembali</label>
-                <input type="date" name="tanggal_kembali" class="form-control">
               </div>
 
               <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>

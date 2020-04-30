@@ -346,14 +346,11 @@ class Admin extends CI_Controller {
 	{
 		$nama_member = $this->input->post('nama_member');
 		$judul_buku = $this->input->post('judul_buku');
-		$tanggal_pinjam = $this->input->post('tanggal_pinjam');
-		$tanggal_kembali = $this->input->post('tanggal_kembali');
 
 		$data = array(
 			'nama_member' => $nama_member,
 			'judul_buku' => $judul_buku,
-			'tanggal_pinjam' => $tanggal_pinjam,
-			'tanggal_kembali' => $tanggal_kembali,
+			'tanggal_pinjam'=> date('Y-m-d'),
 		);
 
 		$this->Mainmodel->input_transaksi($data, 'transaksi');
@@ -390,6 +387,18 @@ class Admin extends CI_Controller {
 
 		$this->Mainmodel->update_transaksi($where,$data,'transaksi');
 		$this->session->set_flashdata('flash','Di Update');
+		redirect(base_url().'admin/transaksi');
+	}
+
+	function kembali($id)
+	{
+		$where = array('id' => $id);
+		$data = array(
+			'denda' 		 => $this->input->post('denda'),
+			'tanggal_kembali' => date('Y-m-d'),
+		);
+
+		$this->Mainmodel->update_transaksi($where,$data,'transaksi');
 		redirect(base_url().'admin/transaksi');
 	}
 }
