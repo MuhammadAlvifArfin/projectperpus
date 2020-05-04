@@ -401,4 +401,60 @@ class Admin extends CI_Controller {
 		$this->Mainmodel->update_transaksi($where,$data,'transaksi');
 		redirect(base_url().'admin/transaksi');
 	}
+
+	//export excel
+
+	public function excel()
+	{
+		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
+
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel.php');
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel/Writer/Excel2007.php');
+
+		$object = new PHPExcel();
+
+		$object->getProperties()->setCreator("THEPerpustakaan");
+		$object->getProperties()->setLastModifiedBy("THEPerpustakaan");
+		$object->getProperties()->setTitle("Data Peminjaman");
+
+		$object->setActiveSheetIndex(0);
+
+		$object->getActiveSheet()->setCellValue('A1', 'NO');
+		$object->getActiveSheet()->setCellValue('B1', 'ID PEMINJAMAN');
+		$object->getActiveSheet()->setCellValue('C1', 'NAMA MEMBER');
+		$object->getActiveSheet()->setCellValue('D1', 'JUDUL BUKU');
+		$object->getActiveSheet()->setCellValue('E1', 'TANGGAL PEMINJAMAN');
+		$object->getActiveSheet()->setCellValue('F1', 'TANGGAL KEMBALI');;
+
+		$baris = 2;
+		$no = 1;
+
+		foreach ($data['transaksi'] as $t)
+		{
+			$object->getActiveSheet()->setCellValue('A'.$baris, $no++);
+			$object->getActiveSheet()->setCellValue('B'.$baris, $t->id);
+			$object->getActiveSheet()->setCellValue('C'.$baris, $t->nama_member);
+			$object->getActiveSheet()->setCellValue('D'.$baris, $t->judul_buku);
+			$object->getActiveSheet()->setCellValue('E'.$baris, $t->tanggal_pinjam);
+			$object->getActiveSheet()->setCellValue('F'.$baris, $t->$tanggal_kembali);
+
+			$baris++;
+		}
+
+		$filename = "Data_Peminjaman".'.xlsx';
+
+		$object->getActiveSheet()->setTitle("Data Peminjaman");
+
+		header('Content-Type: aplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+		header('Content-Dispossition: attachment;filename= "'.$filename.' " ');
+
+		header('Chace-Control: max-age=0');
+
+		$writer=PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+		$writer->save('php://output');
+
+		exit;
+
+	}
 }

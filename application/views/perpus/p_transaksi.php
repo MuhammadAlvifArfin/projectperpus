@@ -18,6 +18,7 @@
             <div class="card-body">
             <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-cart-plus"></i></button>
+            <a href="<?= base_url('admin/excel')?>" class="btn btn-primary"><i class="fas fa-download"></i></a>
             </div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
             <div class="table-responsive p-0">
