@@ -402,59 +402,109 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/transaksi');
 	}
 
-	//export excel
 
+	//export excel
 	public function excel()
 	{
 		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
-
 		require(APPPATH. 'PHPExcel/Classes/PHPExcel.php');
 		require(APPPATH. 'PHPExcel/Classes/PHPExcel/Writer/Excel2007.php');
+		
+		$excel = new PHPExcel();
 
-		$object = new PHPExcel();
+		$excel->getProperties()->setCreator("THEPerpustakaan");
+		$excel->getProperties()->setLastModifiedBy("THEPerpustakaan");
+		$excel->getProperties()->setTitle("Data Peminjaman");
 
-		$object->getProperties()->setCreator("THEPerpustakaan");
-		$object->getProperties()->setLastModifiedBy("THEPerpustakaan");
-		$object->getProperties()->setTitle("Data Peminjaman");
+		$excel->setActiveSheetIndex(0);
 
-		$object->setActiveSheetIndex(0);
+		$style_col = array(
+		  'font' => array('bold' => true),
+		  'alignment' => array(
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, 
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
+		  ),
+		  'borders' => array(
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+		
+		$style_row = array(
+		  'alignment' => array(
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+		  ),
+		  'borders' => array(
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+		$excel->setActiveSheetIndex(0)->setCellValue('A1', "DATA TRANSAKSI"); 
+		$excel->getActiveSheet()->mergeCells('A1:F1'); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); 
+		$excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); 
+		
+		$excel->setActiveSheetIndex(0)->setCellValue('A3', "NO"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('B3', "ID PEMINJAMAN"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('C3', "NAMA MEMBER"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('D3', "JUDUL BUKU"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('E3', "TANGGAL PEMINJAMAN"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('F3', "TANGGAL PENGEMBALIAN");
 
-		$object->getActiveSheet()->setCellValue('A1', 'NO');
-		$object->getActiveSheet()->setCellValue('B1', 'ID PEMINJAMAN');
-		$object->getActiveSheet()->setCellValue('C1', 'NAMA MEMBER');
-		$object->getActiveSheet()->setCellValue('D1', 'JUDUL BUKU');
-		$object->getActiveSheet()->setCellValue('E1', 'TANGGAL PEMINJAMAN');
-		$object->getActiveSheet()->setCellValue('F1', 'TANGGAL KEMBALI');;
+		$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+		
 
-		$baris = 2;
-		$no = 1;
-
-		foreach ($data['transaksi'] as $t)
-		{
-			$object->getActiveSheet()->setCellValue('A'.$baris, $no++);
-			$object->getActiveSheet()->setCellValue('B'.$baris, $t->id);
-			$object->getActiveSheet()->setCellValue('C'.$baris, $t->nama_member);
-			$object->getActiveSheet()->setCellValue('D'.$baris, $t->judul_buku);
-			$object->getActiveSheet()->setCellValue('E'.$baris, $t->tanggal_pinjam);
-			$object->getActiveSheet()->setCellValue('F'.$baris, $t->$tanggal_kembali);
-
-			$baris++;
+		$no = 1; 
+		$numrow = 4; 
+		foreach($data['transaksi'] as $t){
+		  $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+		  $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $t->id);
+		  $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $t->nama_member);
+		  $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $t->judul_buku);
+		  $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $t->tanggal_pinjam);
+		  $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $t->tanggal_kembali);
+		  
+		  
+		  $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+		  
+		  $no++;
+		  $numrow++;
 		}
-
-		$filename = "Data_Peminjaman".'.xlsx';
-
-		$object->getActiveSheet()->setTitle("Data Peminjaman");
-
-		header('Content-Type: aplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-		header('Content-Dispossition: attachment;filename= "'.$filename.' " ');
-
-		header('Chace-Control: max-age=0');
-
-		$writer=PHPExcel_IOFactory::createWriter($object, 'Excel2007');
-		$writer->save('php://output');
-
-		exit;
+		
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(5); 
+		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(20); 
+		$excel->getActiveSheet()->getColumnDimension('C')->setWidth(25); 
+		$excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+		$excel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(30);
+		
+		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+		
+		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+		
+		$excel->getActiveSheet(0)->setTitle("Data Peminjaman");
+		$excel->setActiveSheetIndex(0);
+		
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="DataPeminjaman.xlsx"');
+		header('Cache-Control: max-age=0');
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+		$write->save('php://output');
 
 	}
 }
