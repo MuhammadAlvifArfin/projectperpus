@@ -18,6 +18,7 @@
           <div class="card-body">
             <div class="form-group">
               <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal"><i class="fas fa-user-plus"></i></button>
+              <a href="<?= base_url('admin/excel_member')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
             </div>
             <div>
               <small class="text-danger">
