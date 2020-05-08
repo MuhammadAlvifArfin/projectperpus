@@ -18,6 +18,7 @@
             <div class="card-body">
              <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
+            <a href="<?= base_url('admin/excel_buku')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
             </div>
             <div>
             <small class="text-danger">

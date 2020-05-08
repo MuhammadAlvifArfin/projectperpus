@@ -403,8 +403,8 @@ class Admin extends CI_Controller {
 	}
 
 
-	//export excel
-	public function excel()
+	//export excel transaksi
+	public function excel_transaksi()
 	{
 		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
 		require(APPPATH. 'PHPExcel/Classes/PHPExcel.php');
@@ -517,8 +517,8 @@ class Admin extends CI_Controller {
 		
 		$object = new PHPExcel();
 
-		$object->getProperties()->setCreator("THEPerpustakaan");
-		$object->getProperties()->setLastModifiedBy("THEPerpustakaan");
+		$object->getProperties()->setCreator("THE Perpustakaan");
+		$object->getProperties()->setLastModifiedBy("THE Perpustakaan");
 		$object->getProperties()->setTitle("Data Member");
 
 		$object->setActiveSheetIndex(0);
@@ -578,7 +578,7 @@ class Admin extends CI_Controller {
 
 		$no = 1; 
 		$numrow = 4; 
-		foreach($data['member'] as $m)
+		foreach($dataM['member'] as $m)
 		{
 		  $object->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
 		  $object->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $m->id);
@@ -614,9 +614,121 @@ class Admin extends CI_Controller {
 		$object->setActiveSheetIndex(0);
 		
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment; filename="DataMember.xlxs"');
+		header('Content-Disposition: attachment; filename="DataMember.xlsx"');
 		header('Cache-Control: max-age=0');
 		$write = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+		$write->save('php://output');
+
+	}
+
+	//export excel buku
+	public function excel_buku()
+	{
+		$dataB['buku'] = $this->Mainmodel->tampil_buku()->result();
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel.php');
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel/Writer/Excel2007.php');
+		
+		$excel = new PHPExcel();
+
+		$excel->getProperties()->setCreator("THE Perpustakaan");
+		$excel->getProperties()->setLastModifiedBy("THE Perpustakaan");
+		$excel->getProperties()->setTitle("Data Buku");
+
+		$excel->setActiveSheetIndex(0);
+
+		$style_col = array
+		(
+		  'font' => array('bold' => true),
+		  'alignment' => array(
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, 
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
+		  ),
+		  'borders' => array
+		  (
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+		
+		$style_row = array
+		(
+		  'alignment' => array
+		  (
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+		  ),
+		  'borders' => array
+		  (
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+
+		$excel->setActiveSheetIndex(0)->setCellValue('A1', "DATA BUKU"); 
+		$excel->getActiveSheet()->mergeCells('A1:F1'); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); 
+		$excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); 
+		$excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); 
+		
+		$excel->setActiveSheetIndex(0)->setCellValue('A3', "NO"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('B3', "ID BUKU"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('C3', "JUDUL BUKU"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('D3', "PENERBIT"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('E3', "TAHUN TERBIT"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('F3', "JUMLAH BUKU");
+
+		$excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+		
+
+		$no = 1; 
+		$numrow = 4; 
+		foreach($dataB['buku'] as $b)
+		{
+		  $excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+		  $excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $b->id);
+		  $excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $b->judul);
+		  $excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $b->penerbit);
+		  $excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $b->tahun_terbit);
+		  $excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $b->stock);
+		  
+		  
+		  $excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+		  $excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+		  
+		  $no++;
+		  $numrow++;
+		}
+		
+		$excel->getActiveSheet()->getColumnDimension('A')->setWidth(5); 
+		$excel->getActiveSheet()->getColumnDimension('B')->setWidth(10); 
+		$excel->getActiveSheet()->getColumnDimension('C')->setWidth(25); 
+		$excel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+		$excel->getActiveSheet()->getColumnDimension('E')->setWidth(18);
+		$excel->getActiveSheet()->getColumnDimension('F')->setWidth(19);
+		
+		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+		
+		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+		
+		$excel->getActiveSheet(0)->setTitle("Data Buku");
+		$excel->setActiveSheetIndex(0);
+		
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="Data Buku.xlsx"');
+		header('Cache-Control: max-age=0');
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 		$write->save('php://output');
 
 	}
