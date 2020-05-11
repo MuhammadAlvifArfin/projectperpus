@@ -508,6 +508,13 @@ class Admin extends CI_Controller {
 
 	}
 
+	// print
+	public function print()
+	{
+		$dataT['transaksi'] = $this->Mainmodel->tampil_transaksi("transaksi")->result();
+		$this->load->view('perpus/print_data',$dataT);
+	}
+
 	// export excel member
 	function excel_member()
 	{
