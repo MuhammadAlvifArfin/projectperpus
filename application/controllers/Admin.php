@@ -508,13 +508,6 @@ class Admin extends CI_Controller {
 
 	}
 
-	// print
-	public function print()
-	{
-		$dataT['transaksi'] = $this->Mainmodel->tampil_transaksi("transaksi")->result();
-		$this->load->view('perpus/print_data',$dataT);
-	}
-
 	// export excel member
 	function excel_member()
 	{
@@ -738,5 +731,14 @@ class Admin extends CI_Controller {
 		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 		$write->save('php://output');
 
+	}
+
+	//print transaksi
+	function print_transaksi()
+	{
+		$this->load->model('Mainmodel');
+		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
+		$data['title'] 		= "Cetak Data Transaksi";
+		$this->load->view('perpus/print_transaksi',$data);
 	}
 }

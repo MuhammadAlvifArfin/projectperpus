@@ -104,7 +104,7 @@ class Mainmodel extends CI_Model {
 	}
 
 	// transaksi assets
-	public function  tampil_transaksi(){
+	function  tampil_transaksi(){
 		return $this->db->get('transaksi');
 	}
 

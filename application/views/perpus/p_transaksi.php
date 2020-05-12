@@ -19,7 +19,7 @@
             <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-cart-plus"></i></button>
             <a href="<?= base_url('admin/excel_transaksi')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
-            <a href="<?= base_url('admin/print')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"></i></a>
+            <a href="<?= base_url('admin/print_transaksi')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"></i></a>
             </div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
             <div class="table-responsive p-0">
