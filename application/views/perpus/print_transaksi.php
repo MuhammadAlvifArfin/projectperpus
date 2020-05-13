@@ -37,6 +37,8 @@
                     <th>JUDUL BUKU</th>
                     <th>TANGGAL PEMINJAMAN</th>
                     <th>TANGGAL PENGEMBALIAN</th>
+                    <th>LAMA PEMINJAMAN (TELAT)</th>
+                    <th>DENDA</th>
                 </tr>
                 </thead>
 
@@ -44,6 +46,20 @@
                   <?php
                     $no = 1;
                     foreach($transaksi as $t){
+                        if ($t->tanggal_kembali=="0000-00-00") 
+                        {	
+                            $tanggal1    = date_create($t->tanggal_pinjam);
+                            $tanggal2   = date_create(date('Y-m-d'));
+                            $cek_telat = date_diff($tanggal1,$tanggal2); 
+                            $telat  = $cek_telat->format("%a");
+                        }
+                        else
+                        {
+                            $tanggal1  = date_create($t->tanggal_pinjam);
+                            $tanggal2   = date_create($t->tanggal_kembali);
+                            $cek_telat = date_diff($tanggal1,$tanggal2); 
+                            $telat = $cek_telat->format("%a");
+                        }
                   ?>
                     <tr>
                       <td> <?= $no++ ?></td>
@@ -51,8 +67,20 @@
                       <td><?= $t->nama_member ?></td>
                       <td><?= $t->judul_buku ?></td>
                       <td><?= $t->tanggal_pinjam ?></td>
-                      <td><?= $t->tanggal_kembali ?></td>
+                      
+                      <td>
+                        <?php if($t->tanggal_kembali!=="0000-00-00"){echo $t->tanggal_kembali;}else{echo "Belum Kembali";} ?>
+                      </td>
+
+                      <td>
+                        <?php if($telat>7){echo $telat." Hari (".($telat-7)." Hari)";}else{echo $telat." Hari(0)";}?>
+                      </td>
+
+                      <td>
+                        <?php if($telat>7){echo "RP.".($telat-7)*500;}else{echo "-";} ?>
+                      </td>
                     </tr>
+                    
                     <?php } ?>
                 </tbody>
             </table>

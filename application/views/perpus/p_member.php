@@ -21,8 +21,17 @@
               <a href="<?= base_url('admin/excel_member')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
             </div>
             <div>
-              <small class="text-danger">
-                <?php echo validation_errors(); ?>
+              <small class="text-danger"> 
+                <?php if(validation_errors())
+                {
+                ?>
+                
+                </div><div class="callout callout-danger">
+                  <h5>Peringatan!</h5>
+                  <p><?php echo validation_errors(); ?></p>
+                </div>
+                
+                <?php } ?>
               </small>
             </div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>

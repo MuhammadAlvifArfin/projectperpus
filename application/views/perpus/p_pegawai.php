@@ -20,8 +20,17 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
             </div>
             <div>
-            <small class="text-danger">
-                <?php echo validation_errors(); ?>
+              <small class="text-danger"> 
+                <?php if(validation_errors())
+                {
+                ?>
+                
+                </div><div class="callout callout-danger">
+                  <h5>Peringatan!</h5>
+                  <p><?php echo validation_errors(); ?></p>
+                </div>
+                
+                <?php } ?>
               </small>
             </div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>

@@ -17,89 +17,70 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+
       <div class="row">
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-info">
-              <span class="info-box-icon"><i class="fas fa-book-open"></i></span>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3><?php echo $this->Mainmodel-> tampil_buku('buku')->num_rows(); ?></h3>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Judul Buku</span>
-                <span class="info-box-number"><?php echo $this->Mainmodel-> tampil_buku('buku')->num_rows(); ?></span>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 100%"></div>
-                </div>
-                <span class="progress-description">
-                  Total <?php echo $this->Mainmodel->buku_sum(); ?> Buku
-                </span>
+                <p>Judul Buku ( Total <?php echo $this->Mainmodel->buku_sum(); ?> Buku )</p>
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-success">
-              <span class="info-box-icon"><i class="far fa-address-card"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Member</span>
-                <span class="info-box-number"><?php echo $this->Mainmodel-> tampil_member('member')->num_rows(); ?></span>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 100%"></div>
-                </div>
-                <span class="progress-description">
-                  Member Terdaftar
-                </span>
+              <div class="icon">
+                <i class="fas fa-book-open"></i>
               </div>
-              <!-- /.info-box-content -->
+              <a href="<?= base_url('admin/buku'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <!-- /.info-box -->
           </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-warning">
-              <span class="info-box-icon"><i class="far fa-id-badge"></i></span>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><?php echo $this->Mainmodel-> tampil_member('member')->num_rows(); ?></h3>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Pegawai</span>
-                <span class="info-box-number"><?php echo $this->Mainmodel->tampil_data('pegawai')->num_rows(); ?></span>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 100%"></div>
-                </div>
-                <span class="progress-description">
-                  Pegawai Terdaftar
-                </span>
+                <p>Data Member</p>
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-12">
-            <div class="info-box bg-danger">
-              <span class="info-box-icon"><i class="fas fa-book-reader"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Transaksi</span>
-                <span class="info-box-number"><?php echo $this->Mainmodel-> tampil_transaksi('transaksi')->num_rows(); ?></span>
-
-                <div class="progress">
-                  <div class="progress-bar" style="width: 100%"></div>
-                </div>
-                <span class="progress-description">
-                  Transaksi Terdaftar
-                </span>
+              <div class="icon">
+                <i class="far fa-address-card"></i>
               </div>
-              <!-- /.info-box-content -->
+              <a href="<?= base_url('admin/member'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-            <!-- /.info-box -->
           </div>
-          <!-- /.col -->
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?php echo $this->Mainmodel->tampil_data('pegawai')->num_rows(); ?></h3>
+
+                <p>Data Pegawai</p>
+              </div>
+              <div class="icon">
+                <i class="far fa-id-badge"></i>
+              </div>
+              <a href="<?= base_url('admin/pegawai'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo $this->Mainmodel-> tampil_transaksi('transaksi')->num_rows(); ?></h3>
+
+                <p>Data Transaksi</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-book-reader"></i>
+              </div>
+              <a href="<?= base_url('admin/transaksi'); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
-          <!-- /.col -->
+
         <!-- /.row -->
       </div><!--/. container-fluid -->
     </section>
