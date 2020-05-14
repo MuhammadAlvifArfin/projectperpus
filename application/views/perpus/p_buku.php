@@ -19,6 +19,7 @@
              <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
             <a href="<?= base_url('admin/excel_buku')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
+            <a href="<?= base_url('admin/print_buku')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"></i></a>
             </div>
             <div>
               <small class="text-danger"> 
@@ -50,8 +51,8 @@
                     <h3 class="widget-user-username"><?= $b->judul ?></h3>
                     <h5 class="widget-user-desc"><?= $b->penerbit ?></h5>
                   </div>
-                  <div class="widget-user-image">
-                    <img class="img-rounded elevation-2" src="<?= base_url('assets/gambar_buku/'.$b->gambar)  ?>" alt="User Avatar">
+                  <div class="widget-user-image" >
+                    <img style="background-color: white;" class="img-rounded elevation-2" src="<?= base_url('assets/gambar_buku/'.$b->gambar)  ?>" alt="User Avatar">
                   </div>
                   <div class="card-footer">
                     <div class="row">

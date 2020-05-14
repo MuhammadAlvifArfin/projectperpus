@@ -741,4 +741,13 @@ class Admin extends CI_Controller {
 		$data['title'] 		= "Cetak Data Transaksi";
 		$this->load->view('perpus/print_transaksi',$data);
 	}
+
+	// print buku
+	function print_buku()
+	{
+		$this->load->model('Mainmodel');
+		$data['buku'] = $this->Mainmodel->tampil_buku()->result();
+		$data['title'] 		= "Cetak Data Buku";
+		$this->load->view('perpus/print_buku',$data);
+	}
 }
