@@ -17,8 +17,9 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="form-group">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal"><i class="fas fa-user-plus"></i></button>
-              <a href="<?= base_url('admin/excel_member')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal"><i class="fas fa-user-plus"> Tambah Data</i></button>
+              <a href="<?= base_url('admin/excel_member')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"> Simpan Excel</i></a>
+              <a href="<?= base_url('admin/print_member')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"> Cetak Data</i></a>
             </div>
             <div>
               <small class="text-danger"> 

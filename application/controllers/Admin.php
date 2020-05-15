@@ -750,4 +750,13 @@ class Admin extends CI_Controller {
 		$data['title'] 		= "Cetak Data Buku";
 		$this->load->view('perpus/print_buku',$data);
 	}
+
+	// print buku
+	function print_member()
+	{
+		$this->load->model('Mainmodel');
+		$data['member'] = $this->Mainmodel->tampil_member()->result();
+		$data['title'] 		= "Cetak Data Member";
+		$this->load->view('perpus/print_member',$data);
+	}
 }

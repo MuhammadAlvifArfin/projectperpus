@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-Compatible" content="ie=edge">
@@ -21,74 +25,52 @@
       href=" <?= base_url('assets/') ?>dist/img/Logo2.png ">
 
     <title> <?= $title ?> </title>
+
 </head>
 <body>
+
     <div class="card">
-        <h2 class="mt-3"> <p class="text-center"> <b><u></u>DATA PEMINJAMAN</b></p></h2>
+        <h2 class="mt-3"> <p class="text-center"> <b><u></u>DATA MEMBER</b></p></h2>
     </div>
     <div>
         <p class="ml-4">Tanggal Dicetak <a class="ml-4" style="margin-right: 20px;">:</a> <b> <?= date('Y-m-d') ?></b></p>
         <p class="ml-4">Petugas <a style="margin-left: 75px; margin-right: 20px;">:</a> <b><?= $this->session->Userdata('username');?></b></p>
     </div>
-        <!-- /.card-header -->
-        <div class="card-body p-0 ml-4 mr-4">
+
+    <!-- /.card-header -->
+    <div class="card-body p-0 ml-4 mr-4">
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th style="width: 10px">#</th>
-                    <th>ID PEMINJAMAN</th>
+                    <th>ID MEMBER</th>
                     <th>NAMA MEMBER</th>
-                    <th>JUDUL BUKU</th>
-                    <th>TANGGAL PEMINJAMAN</th>
-                    <th>TANGGAL PENGEMBALIAN</th>
-                    <th>LAMA PEMINJAMAN (TELAT)</th>
-                    <th>DENDA</th>
+                    <th>JENIS KELAMIN</th>
+                    <th>ALAMAT</th>
+                    <th>NO. TELEPON</th>
                 </tr>
                 </thead>
 
                 <tbody>
                   <?php
                     $no = 1;
-                    foreach($transaksi as $t){
-                        if ($t->tanggal_kembali=="0000-00-00") 
-                        {	
-                            $tanggal1    = date_create($t->tanggal_pinjam);
-                            $tanggal2   = date_create(date('Y-m-d'));
-                            $cek_telat = date_diff($tanggal1,$tanggal2); 
-                            $telat  = $cek_telat->format("%a");
-                        }
-                        else
-                        {
-                            $tanggal1  = date_create($t->tanggal_pinjam);
-                            $tanggal2   = date_create($t->tanggal_kembali);
-                            $cek_telat = date_diff($tanggal1,$tanggal2); 
-                            $telat = $cek_telat->format("%a");
-                        }
+                    foreach($member as $m){
                   ?>
+
                     <tr>
-                      <td> <?= $no++ ?></td>
-                      <td><?= $t->id ?></td>
-                      <td><?= $t->nama_member ?></td>
-                      <td><?= $t->judul_buku ?></td>
-                      <td><?= $t->tanggal_pinjam ?></td>
-                      
-                      <td>
-                        <?php if($t->tanggal_kembali!=="0000-00-00"){echo $t->tanggal_kembali;}else{echo "Belum Kembali";} ?>
-                      </td>
+                      <td><?= $no++ ?></td>
+                      <td><?= $m->id ?></td>
+                      <td><?= $m->nama ?></td>
+                      <td><?= $m->jenkel ?></td>
+                      <td><?= $m->alamat ?></td>
+                      <td><?= $m->telpon ?></td>
+                    </tr>  
 
-                      <td>
-                        <?php if($telat>7){echo $telat." Hari (".($telat-7)." Hari)";}else{echo $telat." Hari(0)";}?>
-                      </td>
-
-                      <td>
-                        <?php if($telat>7){echo "RP.".($telat-7)*500;}else{echo "-";} ?>
-                      </td>
-                    </tr>
-                    
                     <?php } ?>
                 </tbody>
             </table>
         </div>
+        
         <!-- /.card-body -->
         <div class="mt-5" style="float: right; margin-right: 145px;">
         <h6>
@@ -110,6 +92,6 @@
     <script type="text/javascript">
         window.print();
     </script>
-</body>
 
+</body>
 </html>

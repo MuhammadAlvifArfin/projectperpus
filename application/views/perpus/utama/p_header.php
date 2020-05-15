@@ -40,7 +40,7 @@
 
   <link rel="icon" 
       type="image/png" 
-      href=" <?= base_url('assets/') ?>dist/img/Logo2.png " />
+      href=" <?= base_url('assets/') ?>dist/img/Logo2.png ">
 
 </head>
 <body  class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
