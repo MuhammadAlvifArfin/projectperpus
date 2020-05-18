@@ -759,4 +759,24 @@ class Admin extends CI_Controller {
 		$data['title'] 		= "Cetak Data Member";
 		$this->load->view('perpus/print_member',$data);
 	}
+
+	//pdf
+	function pdf()
+	{
+		$this->load->library('dompdf_gen');
+		$this->load->model('Mainmodel');
+
+		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
+		$data['title'] 		= "Cetak Data Transaksi";
+		$this->load->view('perpus/test_pdf',$data);
+
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("Data_Transaksi.pdf", array('Attachment' =>0));
+	}
 }
