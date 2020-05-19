@@ -760,15 +760,14 @@ class Admin extends CI_Controller {
 		$this->load->view('perpus/print_member',$data);
 	}
 
-	//pdf
-	function pdf()
+	//pdf transaksi
+	function pdf_transaksi()
 	{
 		$this->load->library('dompdf_gen');
 		$this->load->model('Mainmodel');
 
 		$data['transaksi'] = $this->Mainmodel->tampil_transaksi()->result();
-		$data['title'] 		= "Cetak Data Transaksi";
-		$this->load->view('perpus/test_pdf',$data);
+		$this->load->view('perpus/pdf_transaksi',$data);
 
 		$paper_size = 'A4';
 		$orientation = 'landscape';
@@ -777,6 +776,6 @@ class Admin extends CI_Controller {
 
 		$this->dompdf->load_html($html);
 		$this->dompdf->render();
-		$this->dompdf->stream("Data_Transaksi.pdf", array('Attachment' =>0));
+		$this->dompdf->stream("Data Transaksi.pdf", array('Attachment' =>0));
 	}
 }

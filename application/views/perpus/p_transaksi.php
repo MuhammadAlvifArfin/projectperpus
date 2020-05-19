@@ -19,7 +19,7 @@
             <div class="form-group">
             <button class="btn btn-primary" title="Tambah Data" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-cart-plus"></i></button>
             <a href="<?= base_url('admin/excel_transaksi')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
-            <a href="<?= base_url('admin/pdf')?>" title="Download PDF" class="btn btn-warning"><i class="fas fa-file-pdf"></i></a>
+            <a href="<?= base_url('admin/pdf_transaksi')?>" title="Download PDF" class="btn btn-warning"><i class="fas fa-file-pdf"></i></a>
             <a href="<?= base_url('admin/print_transaksi')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"></i></a>
             </div>
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash');?>"></div>
