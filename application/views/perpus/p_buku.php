@@ -18,8 +18,18 @@
             <div class="card-body">
              <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
-            <a href="<?= base_url('admin/excel_buku')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"></i></a>
-            <a href="<?= base_url('admin/print_buku')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"></i></a>
+            <div class="btn-group" style="margin-left: 15px;">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export Data Buku
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="<?= base_url('admin/excel_buku')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/pdf_buku')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/print_buku')?>">Print <i style="float: right;" class="fas fa-print"></i></a>
+                </div>
+              </div>
             </div>
             <div>
               <small class="text-danger"> 

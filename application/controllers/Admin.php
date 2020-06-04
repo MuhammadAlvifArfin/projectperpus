@@ -778,4 +778,23 @@ class Admin extends CI_Controller {
 		$this->dompdf->render();
 		$this->dompdf->stream("Data Transaksi.pdf", array('Attachment' =>0));
 	}
+
+	//pdf buku
+	function pdf_buku()
+	{
+		$this->load->library('dompdf_gen');
+		$this->load->model('Mainmodel');
+
+		$data['buku'] = $this->Mainmodel->tampil_buku()->result();
+		$this->load->view('perpus/pdf_buku',$data);
+
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("Data Buku.pdf", array('Attachment' =>0));
+	}
 }
