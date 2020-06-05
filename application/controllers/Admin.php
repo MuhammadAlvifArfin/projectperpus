@@ -797,4 +797,23 @@ class Admin extends CI_Controller {
 		$this->dompdf->render();
 		$this->dompdf->stream("Data Buku.pdf", array('Attachment' =>0));
 	}
+
+	//pdf buku
+	function pdf_member()
+	{
+		$this->load->library('dompdf_gen');
+		$this->load->model('Mainmodel');
+
+		$data['member'] = $this->Mainmodel->tampil_member()->result();
+		$this->load->view('perpus/pdf_member',$data);
+
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("Data Member.pdf", array('Attachment' =>0));
+	}
 }

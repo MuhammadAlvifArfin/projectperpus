@@ -17,9 +17,19 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="form-group">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal"><i class="fas fa-user-plus"> Tambah Data</i></button>
-              <a href="<?= base_url('admin/excel_member')?>" title="Download Excel" class="btn btn-success"><i class="fas fa-file-excel"> Simpan Excel</i></a>
-              <a href="<?= base_url('admin/print_member')?>" title="Print" class="btn btn-danger"><i class="fas fa-print"> Cetak Data</i></a>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal" title="Tambah Data"><i class="fas fa-user-plus"></i></button>
+              <div class="btn-group" style="margin-left: 15px;">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export Transaksi
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="<?= base_url('admin/excel_member')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/pdf_member')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/print_member')?>">Print <i style="float: right;" class="fas fa-print"></i></a>
+                </div>
+              </div>
             </div>
             <div>
               <small class="text-danger"> 
