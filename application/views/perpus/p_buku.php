@@ -18,7 +18,7 @@
             <div class="card-body">
              <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
-            <div class="btn-group" style="margin-left: 15px;">
+            <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Export Data Buku
                 </button>
@@ -27,9 +27,24 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?= base_url('admin/pdf_buku')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?= base_url('admin/print_buku')?>">Print <i style="float: right;" class="fas fa-print"></i></a>
+                  <a class="dropdown-item" href="<?= base_url('admin/print_buku')?>" target="_blank">Print <i style="float: right;" class="fas fa-print"></i></a>
                 </div>
               </div>
+              <a class="btn btn-warning" href="<?= base_url('admin/buku'); ?>"><i class="fas fa-sync-alt"></i></a>
+
+              <div class="row">
+                <div class="col-md-3 mt-3">
+                  <form action="<?= base_url('admin/search_buku')?>" method="POST">
+                    <div class="input-group mb-2">
+                      <input type="text" class="form-control" placeholder="Cari Buku..." name="keyword" autocomplete="off" autofocus>
+                      <div class="input-group-append">
+                        <input class="btn btn-warning" type="submit" name="cari_buku">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              
             </div>
             <div>
               <small class="text-danger"> 
@@ -51,6 +66,7 @@
             <div class="row">
 
               <?php 
+              if (! empty($buku)){
                       foreach($buku as $b){ 
                 ?>
                 <div class="col-md-4">
@@ -100,7 +116,13 @@
                 </div>
                 </div>
                 <!-- /.widget-user -->
-                <?php } ?>
+                <?php 
+                    }
+                  } 
+                  else {
+                      echo "Data Tidak Ditemukan";
+                  }
+                ?>
 
               <!-- /.col -->
               </div>

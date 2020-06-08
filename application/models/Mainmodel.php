@@ -88,6 +88,17 @@ class Mainmodel extends CI_Model {
 		$this->db->update($table,$data);
 	}
 
+	function get_keyword($keyword)
+	{
+		$this->db->select('*');
+		$this->db->from('buku');
+		$this->db->like('id', $keyword);
+		$this->db->or_like('judul', $keyword);
+		$this->db->or_like('penerbit', $keyword);
+		$this->db->or_like('tahun_terbit', $keyword);
+		return $this->db->get()->result();
+	}
+
 	// pegawai assets
 	function edit_pegawai($where, $table)
 	{

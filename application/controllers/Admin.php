@@ -157,6 +157,17 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/buku');
 	}
 
+	//cari buku
+	function search_buku()
+	{
+		$keyword = $this->input->post('keyword');
+		$title['title'] 		= "Buku";
+		$data['buku'] = $this->Mainmodel->get_keyword($keyword);
+		$this->load->view('perpus/utama/p_header',$title);
+		$this->load->view('perpus/p_buku',$data);
+		$this->load->view('perpus/utama/p_footer');
+	}
+
 	// pegawai assets
 	function pegawai()
 	{
