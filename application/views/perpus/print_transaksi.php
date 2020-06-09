@@ -108,7 +108,7 @@
     <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
 
     <script type="text/javascript">
-        window.print();
+        window.addEventListener("load", window.print());
     </script>
 </body>
 

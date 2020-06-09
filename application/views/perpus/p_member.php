@@ -27,7 +27,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?= base_url('admin/pdf_member')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?= base_url('admin/print_member')?>">Print <i style="float: right;" class="fas fa-print"></i></a>
+                  <a class="dropdown-item" href="<?= base_url('admin/print_member')?>" target="_blank"> Print <i style="float: right;" class="fas fa-print"></i></a>
                 </div>
               </div>
             </div>
