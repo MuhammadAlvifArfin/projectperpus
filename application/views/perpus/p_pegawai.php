@@ -40,6 +40,10 @@
                 <tr>
                     <th>Id</th>
                     <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Alamat</th>
+                    <th>No. Telepon</th>
+                    <th>Email</th>
                     <th>Username</th>
                     <th>Password</th>
                     <th width="20%">Aksi</th>
@@ -54,6 +58,10 @@
                 <tr>
                   <td><?= $u->id ?></td>
                   <td><?= $u->nama?></td>
+                  <td><?= $u->jenkel?></td>
+                  <td><?= $u->alamat?></td>
+                  <td><?= $u->telepon?></td>
+                  <td><?= $u->email?></td>
                   <td><?= $u->username ?></td>
                   <td>*********</td>
                   <td> <center><button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
@@ -90,13 +98,39 @@
 
               <div class="form-group">
                 <label>Nama Pegawai</label>
-                <input type="text" name="nama" value="<?= set_value('nama') ?>" class="form-control">
+                <input type="text" name="nama" value="<?= set_value('nama') ?>" class="form-control" autocomplete="off">
                 <small class="text-danger"><?= form_error('nama') ?></small>
               </div>
 
               <div class="form-group">
+                  <label>Jenis Kelamin</label>
+                  <select type="text" name="jenkel" value="<?= set_value('jenkel') ?>" class="form-control">
+                    <option>Laki Laki</option>
+                    <option>Perempuan</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                <label>Alamat</label>
+                <input type="text" name="alamat" value="<?= set_value('alamat') ?>" class="form-control" autocomplete="off">
+                <small class="text-danger"><?= form_error('alamat') ?></small>
+              </div>
+
+              <div class="form-group">
+                <label>Telepon</label>
+                <input type="text" name="telepon" value="<?= set_value('telepon') ?>" class="form-control" autocomplete="off">
+                <small class="text-danger"><?= form_error('telepon') ?></small>
+              </div>
+
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" name="email" value="<?= set_value('email') ?>" class="form-control" autocomplete="off">
+                <small class="text-danger"><?= form_error('email') ?></small>
+              </div>
+
+              <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="username" value="<?= set_value('username') ?>" class="form-control">
+                <input type="text" name="username" value="<?= set_value('username') ?>" class="form-control" autocomplete="off">
                 <small class="text-danger"><?= form_error('username') ?></small>
               </div>
 
@@ -137,20 +171,41 @@
               <div class="form-group">
                     <label>Nama Pegawai</label>
                     <input type="hidden" name="id" class="form-control" value="<?=$p->id ?>">
-                    <input type="text" name="nama" class="form-control" value="<?=$p->nama ?>">
+                    <input type="text" name="nama" class="form-control" value="<?=$p->nama ?>" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label>Jenis Kelamin</label>
+                      <select type="text" name="jenkel" class="form-control" >
+                      <option <?php  if($p->jenkel == 'Laki Laki') { echo 'selected' ;} ?>>Laki Laki</option>
+                      <option <?php  if($p->jenkel == 'Perempuan') { echo 'selected' ;} ?>>Perempuan</option>
+                      </select>
+                </div>
+
+                <div class="form-group">
+                  <label>Alamat</label>
+                    <input type="text" name="alamat" class="form-control" value="<?=$p->alamat ?>" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label>Telepon</label>
+                    <input type="text" name="telepon" class="form-control" value="<?=$p->telepon ?>" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label>Email</label>
+                    <input type="text" name="email" class="form-control" value="<?=$p->email ?>" autocomplete="off">
                 </div>
 
                 <div class="form-group">
                   <label>username</label>
-                    <input type="text" name="username" class="form-control" value="<?=$p->username ?>">
+                    <input type="text" name="username" class="form-control" value="<?=$p->username ?>" autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label>password</label>
                     <input type="text" name="password" class="form-control" value="<?=$p->password ?>">
                 </div>
-
-               
 
               <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
               <button type="submit" class="btn btn-primary">Simpan</button>

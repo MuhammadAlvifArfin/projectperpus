@@ -54,6 +54,48 @@
         <small class="text-danger"><?= form_error('nama') ?></small>
 
         <div class="input-group mb-3">
+        <select type="text" name="jenkel" value="<?= set_value('jenkel') ?>" class="form-control" autocomplete="off">
+          <option>Laki Laki</option>
+          <option>Perempuan</option>
+        </select>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-venus-mars"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+       <input type="text" name="alamat" class="form-control" value="<?= set_value('alamat') ?>" placeholder="Alamat" autocomplete="off">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marker-alt"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('alamat') ?></small>
+
+        <div class="input-group mb-3">
+        <input type="text" name="telepon" class="form-control" value="<?= set_value('telepon') ?>" placeholder="No Telepon" autocomplete="off">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-phone"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('telepon') ?></small>
+
+        <div class="input-group mb-3">
+        <input type="text" name="email" class="form-control" value="<?= set_value('email') ?>" placeholder="Email" autocomplete="off">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-at"></span>
+            </div>
+          </div>
+        </div>
+        <small class="text-danger"><?= form_error('email') ?></small>
+
+        <div class="input-group mb-3">
         <input type="text" name="username" class="form-control" value="<?= set_value('username') ?>" placeholder="Username" autocomplete="off">
           <div class="input-group-append">
             <div class="input-group-text">
