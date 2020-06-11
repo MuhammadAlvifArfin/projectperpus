@@ -23,7 +23,7 @@ class Login extends CI_Controller
 
   public function registrasi()
   {
-			$this->load->model('Mainmodel');
+		$this->load->model('Mainmodel');
 	  	$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('nama', 'Nama', 'required');

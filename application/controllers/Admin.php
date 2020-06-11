@@ -275,6 +275,16 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/pegawai');
 	}
 
+	function detail_pegawai()
+	{
+		$this->load->model('Mainmodel');
+		$dataP['data'] = $this->Mainmodel->tampil_detail();
+		$data['title'] 		= "Detail Pegawai";
+		$this->load->view('perpus/utama/p_header',$data);
+		$this->load->view('perpus/p_detail',$dataP);
+		$this->load->view('perpus/utama/p_footer');
+	}
+
 	// member assets
 	function member()
 	{

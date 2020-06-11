@@ -34,7 +34,11 @@ class Mainmodel extends CI_Model {
 		return $this->db->get('pegawai');
 	}
 
-	
+	function tampil_detail()
+	{
+		$hasil=$this->db->query("SELECT * FROM pegawai WHERE id = 14");
+        return $hasil;
+	}
 
 	// member assets
 

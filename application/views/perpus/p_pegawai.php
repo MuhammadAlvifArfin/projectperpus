@@ -68,6 +68,7 @@
                   | 
                   <a class="btn btn-danger hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
                   </center>
+                  </td>
                 </tr>
 
                 <?php } ?>

@@ -85,7 +85,7 @@
           <img src="<?= base_url('assets/'); ?>dist/img/avatar.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block"><?= $this->session->Userdata('username');?></a>
+          <a href="<?= base_url('admin/detail_pegawai') ?>" class="d-block"><?= $this->session->Userdata('username');?></a>
         </div>
       </div>
 
