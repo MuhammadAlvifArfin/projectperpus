@@ -272,12 +272,13 @@ class Admin extends CI_Controller {
 
 		$this->Mainmodel->update_pegawai($where,$data,'pegawai');
 		$this->session->set_flashdata('flash','Di Update');
-		redirect(base_url().'admin/pegawai');
+		redirect(base_url().'admin/detail_pegawai');
 	}
 
 	function detail_pegawai()
 	{
 		$this->load->model('Mainmodel');
+		$dataP['pegawai'] = $this->Mainmodel->tampil_data()->result();
 		$dataP['data'] = $this->Mainmodel->tampil_detail();
 		$data['title'] 		= "Detail Pegawai";
 		$this->load->view('perpus/utama/p_header',$data);

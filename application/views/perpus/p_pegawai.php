@@ -44,9 +44,9 @@
                     <th>Alamat</th>
                     <th>No. Telepon</th>
                     <th>Email</th>
-                    <th>Username</th>
+                    <!-- <th>Username</th>
                     <th>Password</th>
-                    <th width="20%">Aksi</th>
+                    <th width="20%">Aksi</th> -->
                 </tr>
                 </thead>
 
@@ -62,13 +62,13 @@
                   <td><?= $u->alamat?></td>
                   <td><?= $u->telepon?></td>
                   <td><?= $u->email?></td>
-                  <td><?= $u->username ?></td>
+                  <!-- <td><?= $u->username ?></td>
                   <td>*********</td>
-                  <td> <center><button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
+                  <td> <center><button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
                   | 
                   <a class="btn btn-danger hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
                   </center>
-                  </td>
+                  </td> -->
                 </tr>
 
                 <?php } ?>
