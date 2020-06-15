@@ -805,6 +805,15 @@ class Admin extends CI_Controller {
 		$this->load->view('perpus/print_member',$data);
 	}
 
+	// print pegawai
+	function print_pegawai()
+	{
+		$this->load->model('Mainmodel');
+		$data['pegawai'] = $this->Mainmodel->tampil_data()->result();
+		$data['title'] 		= "Cetak Data Pegawai";
+		$this->load->view('perpus/print_pegawai',$data);
+	}
+
 	//pdf transaksi
 	function pdf_transaksi()
 	{

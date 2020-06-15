@@ -18,6 +18,14 @@
             <div class="card-body">
             <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
+            <div class="btn-group" style="margin-left: 15px;">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Export Pegawai
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="<?= base_url('admin/print_pegawai')?>" target="_blank">Print <i style="float: right;" class="fas fa-print"></i></a>
+                </div>
+              </div>
             </div>
             <div>
               <small class="text-danger"> 
@@ -44,9 +52,6 @@
                     <th>Alamat</th>
                     <th>No. Telepon</th>
                     <th>Email</th>
-                    <!-- <th>Username</th>
-                    <th>Password</th>
-                    <th width="20%">Aksi</th> -->
                 </tr>
                 </thead>
 
@@ -62,13 +67,6 @@
                   <td><?= $u->alamat?></td>
                   <td><?= $u->telepon?></td>
                   <td><?= $u->email?></td>
-                  <!-- <td><?= $u->username ?></td>
-                  <td>*********</td>
-                  <td> <center><button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                  | 
-                  <a class="btn btn-danger hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
-                  </center>
-                  </td> -->
                 </tr>
 
                 <?php } ?>
