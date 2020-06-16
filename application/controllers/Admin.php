@@ -286,6 +286,141 @@ class Admin extends CI_Controller {
 		$this->load->view('perpus/utama/p_footer');
 	}
 
+	function pdf_pegawai()
+	{
+		$this->load->library('dompdf_gen');
+		$this->load->model('Mainmodel');
+
+		$data['pegawai'] = $this->Mainmodel->tampil_data()->result();
+		$this->load->view('perpus/pdf_pegawai',$data);
+
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream("Data Pegawai.pdf", array('Attachment' =>0));
+	}
+
+	function excel_pegawai()
+	{
+		$dataP['pegawai'] = $this->Mainmodel->tampil_data()->result();
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel.php');
+		require(APPPATH. 'PHPExcel/Classes/PHPExcel/Writer/Excel2007.php');
+		
+		$object = new PHPExcel();
+
+		$object->getProperties()->setCreator("THE Perpustakaan");
+		$object->getProperties()->setLastModifiedBy("THE Perpustakaan");
+		$object->getProperties()->setTitle("Data Pegawai");
+
+		$object->setActiveSheetIndex(0);
+
+		$style_col = array
+		(
+		  'font' => array('bold' => true),
+		  'alignment' => array
+		  (
+			'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER 
+		  ),
+		  'borders' => array
+		  (
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+		
+		$style_row = array
+		(
+		  'alignment' => array
+		  (
+			'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER
+		  ),
+		  'borders' => array
+		  (
+			'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), 
+			'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  
+			'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),
+			'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN)
+		  )
+		);
+
+		$object->setActiveSheetIndex(0)->setCellValue('A1', "DATA PEGAWAI"); 
+		$object->getActiveSheet()->mergeCells('A1:F1'); 
+		$object->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); 
+		$object->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); 
+		$object->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); 
+		
+		$object->setActiveSheetIndex(0)->setCellValue('A3', "NO"); 
+		$object->setActiveSheetIndex(0)->setCellValue('B3', "ID PEGAWAI"); 
+		$object->setActiveSheetIndex(0)->setCellValue('C3', "NAMA PEGAWAI"); 
+		$object->setActiveSheetIndex(0)->setCellValue('D3', "JENIS KELAMIN"); 
+		$object->setActiveSheetIndex(0)->setCellValue('E3', "ALAMAT"); 
+		$object->setActiveSheetIndex(0)->setCellValue('F3', "NO TELEPON");
+		$object->setActiveSheetIndex(0)->setCellValue('G3', "EMAIL");
+
+		$object->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('B3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+		$object->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
+		
+
+		$no = 1; 
+		$numrow = 4; 
+		foreach($dataP['pegawai'] as $p)
+		{
+		  $object->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+		  $object->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $p->id);
+		  $object->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $p->nama);
+		  $object->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $p->jenkel);
+		  $object->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $p->alamat);
+		  $object->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $p->telepon);
+		  $object->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $p->email);
+		  
+		  
+		  $object->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+		  $object->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
+		  
+		  $no++;
+		  $numrow++;
+		}
+		
+		$object->getActiveSheet()->getColumnDimension('A')->setWidth(5); 
+		$object->getActiveSheet()->getColumnDimension('B')->setWidth(15); 
+		$object->getActiveSheet()->getColumnDimension('C')->setWidth(25); 
+		$object->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+		$object->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+		$object->getActiveSheet()->getColumnDimension('F')->setWidth(30);
+		$object->getActiveSheet()->getColumnDimension('G')->setWidth(30);
+		
+		$object->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+		
+		$object->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+		
+		$object->getActiveSheet(0)->setTitle("Data Pegawai");
+		$object->setActiveSheetIndex(0);
+		
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="DataPegawai.xlsx"');
+		header('Cache-Control: max-age=0');
+		$write = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
+		$write->save('php://output');
+
+	}
+
 	// member assets
 	function member()
 	{

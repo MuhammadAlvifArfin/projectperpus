@@ -24,6 +24,10 @@
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="<?= base_url('admin/print_pegawai')?>" target="_blank">Print <i style="float: right;" class="fas fa-print"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/excel_pegawai')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<?= base_url('admin/pdf_pegawai')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
                 </div>
               </div>
             </div>
