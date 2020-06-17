@@ -18,19 +18,21 @@
             <div class="card-body">
              <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Export Data Buku
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="<?= base_url('admin/excel_buku')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?= base_url('admin/pdf_buku')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?= base_url('admin/print_buku')?>" target="_blank">Print <i style="float: right;" class="fas fa-print"></i></a>
+            <a class="btn btn-info" href="<?= base_url('admin/print_buku')?>" target="_blank"><i class="fas fa-print"></i></a>
+            <a class="btn btn-warning" href="<?= base_url('admin/buku'); ?>"><i class="fas fa-sync-alt"></i></a>
+
+            <div style="float: right;">
+              <div class="btn-group">
+                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Export Data Buku
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?= base_url('admin/excel_buku')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="<?= base_url('admin/pdf_buku')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
+                  </div>
                 </div>
-              </div>
-              <a class="btn btn-warning" href="<?= base_url('admin/buku'); ?>"><i class="fas fa-sync-alt"></i></a>
+            </div>
 
               <div class="row">
                 <div class="col-md-3 mt-3">
@@ -69,31 +71,33 @@
               if (! empty($buku)){
                       foreach($buku as $b){ 
                 ?>
+
                 <div class="col-md-4">
                 <!-- Widget: user widget style 1 -->
                 <div class="card card-widget widget-user">
                   <!-- Add the bg color to the header using any of the bg-* classes -->
-                  <div class="widget-user-header bg-info">
-                    <h3 class="widget-user-username"><?= $b->judul ?></h3>
-                    <h5 class="widget-user-desc"><?= $b->penerbit ?></h5>
+                  <div class="widget-user-header text-white"
+                      style="background: url('../assets/dist/img/bb2.jpg') center center;">
+                    <h3 class="widget-user-username text-right"><?=$b->judul?></h3>
+                    <h5 class="widget-user-desc text-right"><?=$b->penerbit?></h5>
                   </div>
-                  <div class="widget-user-image" >
-                    <img style="background-color: white;" class="img-rounded elevation-2" src="<?= base_url('assets/gambar_buku/'.$b->gambar)  ?>" alt="User Avatar">
+                  <div class="widget-user-image">
+                    <img style="background-color: white;" class="img-rounded elevation-2" src="<?=base_url('assets/gambar_buku/'.$b->gambar)?>" alt="User Avatar">
                   </div>
                   <div class="card-footer">
                     <div class="row">
                       <div class="col-sm-4 border-right">
                         <div class="description-block">
                           <h5 class="description-header">ID</h5>
-                          <span class="description-text"><?= $b->id ?></span>
+                          <span class="description-text"><?=$b->id?></span>
                         </div>
                         <!-- /.description-block -->
                       </div>
                       <!-- /.col -->
                       <div class="col-sm-4 border-right">
                         <div class="description-block">
-                          <h5 class="description-header">THN. TERBIT</h5>
-                          <span class="description-text"><?= $b->tahun_terbit ?></span>
+                          <h5 class="description-header">TERBIT</h5>
+                          <span class="description-text"><?=$b->tahun_terbit?></span>
                         </div>
                         <!-- /.description-block -->
                       </div>
@@ -101,7 +105,7 @@
                       <div class="col-sm-4">
                         <div class="description-block">
                           <h5 class="description-header">JUMLAH</h5>
-                          <span class="description-text"><?= $b->stock ?></span>
+                          <span class="description-text"><?=$b->stock?></span>
                         </div>
                         <!-- /.description-block -->
                       </div>
@@ -114,7 +118,8 @@
                     <!-- /.row -->
                   </div>
                 </div>
-                </div>
+                <!-- /.widget-user -->
+              </div>
                 <!-- /.widget-user -->
                 <?php 
                     }
@@ -123,13 +128,10 @@
                       echo "Data Tidak Ditemukan";
                   }
                 ?>
-
               <!-- /.col -->
               </div>
               <!-- /.row -->
-
             </div>
-
             <!-- /.card-body -->
           </div>
         <!-- /.col -->
@@ -251,7 +253,7 @@
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+  <aside class="control-sidebar control-sidebar-light">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->

@@ -37,7 +37,6 @@
                     <th>PENERBIT</th>
                     <th>TAHUN TERBIT</th>
                     <th>JUMLAH BUKU</th>
-                    <th>GAMBAR</th>
                 </tr>
                 <?php
                 $no = 1;
@@ -49,7 +48,6 @@
                         <td><?php echo $b->penerbit ?></td>
                         <td><?php echo $b->tahun_terbit ?></td>
                         <td><?php echo $b->stock ?></td>
-                        <td class="img-thumbnail" style="max-width: 75px;"><i src="<?= base_url('assets/gambar_buku/'.$b->gambar)  ?>"></i></td>
                     </tr>
                 <?php } ?>
         </table>
