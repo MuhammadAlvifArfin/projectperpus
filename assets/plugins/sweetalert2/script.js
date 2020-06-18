@@ -3,9 +3,9 @@ const flashdata = $('.flash-data').data('flashdata');
 
 if (flashdata){
     Swal.fire({
+        icon: 'success',
         title : 'Informasi',
         text : 'Data Berhasil ' + flashdata,
-        type : 'success'
     });
 }
 
