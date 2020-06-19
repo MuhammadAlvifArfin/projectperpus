@@ -18,13 +18,12 @@
             <div class="card-body">
             <div class="form-group">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
-            <div class="btn-group" style="margin-left: 15px;">
+            <a class="btn btn-info" href="<?= base_url('admin/print_pegawai')?>" target="_blank"><i class="fas fa-print"></i></a>
+            <div class="btn-group" style="float:right;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Export Pegawai
+                  Export Data Pegawai
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="<?= base_url('admin/print_pegawai')?>" target="_blank">Print <i style="float: right;" class="fas fa-print"></i></a>
-                  <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?= base_url('admin/excel_pegawai')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?= base_url('admin/pdf_pegawai')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>

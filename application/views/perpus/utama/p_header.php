@@ -46,7 +46,7 @@
 <body  class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-light navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-light navbar-blue">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -54,6 +54,9 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?= base_url('admin/index'); ?>" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="<?= base_url('admin/detail_pegawai') ?>" class="nav-link">Detail Data Anda</a>
       </li>
     </ul>
 
@@ -74,7 +77,7 @@
     <a href="#" class="brand-link">
       <img src="<?= base_url('assets/'); ?>dist/img/Logo2.png" class="brand-image img-circle elevation-4"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">The Library</span>
+      <span class="brand-text font-weight-light">ThePerpustakaan</span>
     </a>
 
     <!-- Sidebar -->

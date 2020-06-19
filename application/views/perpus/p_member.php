@@ -18,16 +18,15 @@
           <div class="card-body">
             <div class="form-group">
               <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal" title="Tambah Data"><i class="fas fa-user-plus"></i></button>
-              <div class="btn-group" style="margin-left: 15px;">
+              <a class="btn btn-info" href="<?= base_url('admin/print_member')?>" target="_blank"><i class="fas fa-print"></i></a>
+              <div class="btn-group" style="float:right;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Export Transaksi
+                  Export Data Member
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="<?= base_url('admin/excel_member')?>">Excel <i style="float: right;" class="fas fa-file-excel"></i></a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?= base_url('admin/pdf_member')?>">PDF <i style="float: right;" class="fas fa-file-pdf"></i></a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<?= base_url('admin/print_member')?>" target="_blank"> Print <i style="float: right;" class="fas fa-print"></i></a>
                 </div>
               </div>
             </div>
@@ -108,14 +107,14 @@
 
                 <div class="form-group">
                   <label>Nama Member</label>
-                  <input type="text" name="nama" value="<?= set_value('nama') ?>" class="form-control">
+                  <input type="text" name="nama" value="<?= set_value('nama') ?>" class="form-control" autocomplete="off">
                   <small class="text-danger"><?= form_error('nama') ?></small>
                   
                 </div>
 
                 <div class="form-group">
                   <label>Jenis Kelamin</label>
-                  <select type="text" name="jenkel" value="<?= set_value('jenkel') ?>" class="form-control">
+                  <select type="text" name="jenkel" value="<?= set_value('jenkel') ?>" class="form-control" autocomplete="off">
                     <option>Laki Laki</option>
                     <option>Perempuan</option>
                   </select>
@@ -123,13 +122,13 @@
 
                 <div class="form-group">
                   <label>Alamat</label>
-                  <input type="text" name="alamat" value="<?= set_value('alamat') ?>" class="form-control">
+                  <input type="text" name="alamat" value="<?= set_value('alamat') ?>" class="form-control" autocomplete="off">
                   <small class="text-danger"><?= form_error('alamat') ?></small>
                 </div>
 
                 <div class="form-group">
                   <label>No. Telepon</label>
-                  <input type="text" name="telpon" value="<?= set_value('telpon') ?>" class="form-control">
+                  <input type="text" name="telpon" value="<?= set_value('telpon') ?>" class="form-control" autocomplete="off">
                   <small class="text-danger"><?= form_error('telpon') ?></small>
                 </div>
                 <button type="Reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
@@ -166,10 +165,6 @@
                       <select type="text" name="jenkel" class="form-control" >
                       <option <?php  if($m->jenkel == 'Laki Laki') { echo 'selected' ;} ?>>Laki Laki</option>
                       <option <?php  if($m->jenkel == 'Perempuan') { echo 'selected' ;} ?>>Perempuan</option>
-                      
-                      <!-- <option><?=$m->jenkel ?></option>
-                      <option>Laki Laki</option>
-                      <option>Perempuan</option> -->
                     </select>
                 </div>
 

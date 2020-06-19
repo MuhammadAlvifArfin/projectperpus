@@ -71,9 +71,5 @@
 <!-- ChartJS -->
 <script src="<?= base_url('assets/') ?>plugins/chart.js/Chart.min.js"></script>
 
-<!-- PAGE SCRIPTS -->
-<!-- <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard2.js"></script> -->
-
-
 </body>
 </html>
