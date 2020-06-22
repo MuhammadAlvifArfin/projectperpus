@@ -15,16 +15,26 @@
         <div class="col-12">
         <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash'); ?>"></div>
       <?php
-         foreach($data as $u):
+      if (! empty($data)){
+         foreach($data as $u){
       ?>
       <div class="col-md">
         <!-- Widget: user widget style 2 -->
         <div class="card card-widget widget-user-2">
           <!-- Add the bg color to the header using any of the bg-* classes -->
-          <div class="widget-user-header bg-warning">
+          <div class="widget-user-header bg-info">
             <!-- /.widget-user-image -->
-            <h3 class="widget-user-username"><?= $u->nama?></h3>
-            <h5 class="widget-user-desc"><?= $u->username?></h5>
+            <div class="mr-3">
+            <div class="widget-user-image">
+                  <img class="img-circle elevation-2" src="<?= base_url('assets/'); ?>dist/img/user.png" alt="User Avatar">
+                </div>
+              <h3 class="widget-user-username"><?= $u->nama?></h3>
+              <div class="float-right">
+                <a title="Hapus Data" class="btn btn-danger float-right ml-1 hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
+                <button title="Ubah Data" data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning float-right"><i class="fas fa-edit"></i></button>
+              </div>
+              <h5 class="widget-user-desc"><?= $u->username?></h5>
+            </div>
           </div>
           <div class="card-footer p-0">
             <ul class="nav flex-column">
@@ -60,13 +70,18 @@
               </li>
             </ul>
           </div>
-          <button data-toggle="modal" data-target="#update<?php echo $u->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button>
-          <a class="btn btn-danger hapus-pegawai" href="<?= base_url('admin/delete_pegawai/'.$u->id) ?>"><i class="fas fa-trash"></i></a>
         </div>
         <!-- /.widget-user -->
       </div>
-
-            <?php endforeach;?>
+            <?php
+             }
+            } 
+            else {
+              ?>
+                <div class="callout callout-danger">
+                  <h7><?php echo "Data Tidak Ditemukan / Sudah Terhapus"; ?></h7>
+                </div>
+            <?php } ?>
 
           </div>
         <!-- /.col -->
