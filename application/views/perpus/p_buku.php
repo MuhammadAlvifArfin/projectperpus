@@ -17,9 +17,9 @@
             <!-- /.card-header -->
             <div class="card-body">
              <div class="form-group">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
-            <a class="btn btn-info" href="<?= base_url('admin/print_buku')?>" target="_blank"><i class="fas fa-print"></i></a>
-            <a class="btn btn-warning" href="<?= base_url('admin/buku'); ?>"><i class="fas fa-sync-alt"></i></a>
+            <button class="btn btn-primary" title="Tambah Data" data-toggle="modal" data-target="#tambah_buku"><i class="fas fa-book-medical"></i></button>
+            <a class="btn btn-info" title="Print Data" href="<?= base_url('admin/print_buku')?>" target="_blank"><i class="fas fa-print"></i></a>
+            <a class="btn btn-warning" title="Refresh" href="<?= base_url('admin/buku'); ?>"><i class="fas fa-sync-alt"></i></a>
 
             <div style="float: right;">
               <div class="btn-group">
@@ -111,8 +111,8 @@
                       </div>
                       <!-- /.col -->
                       <div class="form-group">
-                      <button data-toggle="modal" data-target="#update<?php echo $b->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
-                      <a href="<?= base_url('admin/delete_buku/'.$b->id) ?>" class="btn btn-danger hapus-buku"><i class="fas fa-trash"></i></a>
+                      <button data-toggle="modal" data-target="#update<?php echo $b->id ?>" class="btn btn-warning" title="Ubah Data" ><i class="fas fa-edit"></i></button></i>
+                      <a href="<?= base_url('admin/delete_buku/'.$b->id) ?>" class="btn btn-danger hapus-buku" title="Hapus Data" ><i class="fas fa-trash"></i></a>
                     </div>
                     </div>
                     <!-- /.row -->

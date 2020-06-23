@@ -18,7 +18,7 @@
           <div class="card-body">
             <div class="form-group">
               <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal" title="Tambah Data"><i class="fas fa-user-plus"></i></button>
-              <a class="btn btn-info" href="<?= base_url('admin/print_member')?>" target="_blank"><i class="fas fa-print"></i></a>
+              <a class="btn btn-info" title="Print Data" href="<?= base_url('admin/print_member')?>" target="_blank"><i class="fas fa-print"></i></a>
               <div class="btn-group" style="float:right;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Export Data Member
@@ -70,9 +70,9 @@
                     <td><?= $m->telpon?></td>
                     <td> 
                       <center>
-                      <button data-toggle="modal" data-target="#update<?php echo $m->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i>
+                      <button data-toggle="modal" data-target="#update<?php echo $m->id ?>" class="btn btn-warning" title="Ubah Data" ><i class="fas fa-edit"></i></button></i>
                         | 
-                        <a href="<?= base_url('admin/delete_member/'.$m->id) ?>" class="btn btn-danger hapus-member"><i class="fas fa-trash"></i></a>
+                        <a href="<?= base_url('admin/delete_member/'.$m->id) ?>" class="btn btn-danger hapus-member" title="Hapus Data" ><i class="fas fa-trash"></i></a>
                     </center>
                     </td>
                   </tr>

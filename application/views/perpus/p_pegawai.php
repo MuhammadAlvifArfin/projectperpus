@@ -17,8 +17,8 @@
             <!-- /.card-header -->
             <div class="card-body">
             <div class="form-group">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
-            <a class="btn btn-info" href="<?= base_url('admin/print_pegawai')?>" target="_blank"><i class="fas fa-print"></i></a>
+            <button class="btn btn-primary" title="Tambah Data" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-user-plus"></i></button>
+            <a class="btn btn-info" title="Print Data" href="<?= base_url('admin/print_pegawai')?>" target="_blank"><i class="fas fa-print"></i></a>
             <div class="btn-group" style="float:right;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Export Data Pegawai

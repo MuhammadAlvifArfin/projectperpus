@@ -18,7 +18,7 @@
             <div class="card-body">
             <div class="form-group">
             <button class="btn btn-primary" title="Tambah Data" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-cart-plus"></i></button>
-            <a class="btn btn-info" href="<?= base_url('admin/print_transaksi')?>" target="_blank"><i class="fas fa-print"></i></a>
+            <a class="btn btn-info" title="Print Data" href="<?= base_url('admin/print_transaksi')?>" target="_blank"><i class="fas fa-print"></i></a>
             <!-- Example single danger button -->
             <div class="btn-group" style="float:right;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,8 +89,8 @@
                     
                     <td>
                       <center>  
-                        <button data-toggle="modal" data-target="#update<?php echo $t->id ?>" class="btn btn-warning"><i class="fas fa-edit"></i></button></i> | 
-                        <a href="<?= base_url('admin/delete_transaksi/'.$t->id) ?>" class="btn btn-danger hapus-transaksi"><i class="fas fa-trash"></i></a>
+                        <button data-toggle="modal" data-target="#update<?php echo $t->id ?>" class="btn btn-warning" title="Ubah Data" ><i class="fas fa-edit"></i></button></i> | 
+                        <a href="<?= base_url('admin/delete_transaksi/'.$t->id) ?>" class="btn btn-danger hapus-transaksi" title="Hapus Data" ><i class="fas fa-trash"></i></a>
                       </center>
                     </td>
                   </tr>

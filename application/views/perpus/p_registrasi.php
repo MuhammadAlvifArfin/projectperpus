@@ -60,7 +60,7 @@
         </select>
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-venus-mars"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
