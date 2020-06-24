@@ -192,10 +192,10 @@
                   </select>
               </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label>Tanggal Pinjam</label>
                     <input type="date" name="tanggal_pinjam" class="form-control" value="<?=$t->tanggal_pinjam ?>">
-                </div>
+                </div> -->
 
               <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>
               <button type="submit" class="btn btn-primary">Simpan</button>

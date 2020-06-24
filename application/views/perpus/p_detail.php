@@ -140,7 +140,7 @@
 
                 <div class="form-group">
                     <label>password</label>
-                    <input type="text" name="password" class="form-control" value="<?=$p->password ?>">
+                    <input type="text" name="password" class="form-control" value="<?=$p->password ?>" autocomplete="off">
                 </div>
 
               <button type="reset" class="btn btn-danger" data-dismiss="modal">Reset</button>

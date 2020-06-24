@@ -63,6 +63,9 @@
         <p class="mb-0">
           <a href="<?= base_url('Login/registrasi') ?>" class="text-center">Register a new membership</a>
         </p>
+        <p class="mb-0">
+          <a href="<?= base_url('Login/ubah_pass') ?>" class="text-center">Forgot Password</a>
+        </p>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

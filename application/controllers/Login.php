@@ -71,6 +71,46 @@ class Login extends CI_Controller
 		}
   }
 
+  public function ubah_pass()
+  {
+		$this->load->model('Mainmodel');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]',
+			array('min_length' => '* %s Minimal 5 Karakter')
+		);
+		$this->form_validation->set_rules('repass', 'Re-Password', 'required|matches[password]',
+			array('matches' => '* %s Tidak Sesuai Dengan Password')
+		);
+
+		$this->form_validation->set_message('required', '* %s Belum Terisi');
+		$this->form_validation->set_message('min_length', '* %s Minimal 5 Karakter');
+
+		if ($this->form_validation->run() == FALSE)
+        {
+			$data['title'] 		= "Ubah Password";
+			$this->load->view('perpus/ubah_pass', $data);
+		}
+		
+		else {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			$data = array(
+				'username' => $username,
+				'password' => $password,
+			);
+
+			$where = array(
+				'username' => $username
+			);
+
+			$this->Mainmodel->update_pegawai($where,$data,'pegawai');
+			redirect(base_url().'login/index');
+		}
+  }
+
 	public function dologin()
 	{
 		$cek = $this->model->dologin();

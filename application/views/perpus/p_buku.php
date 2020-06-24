@@ -172,7 +172,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Stock</label>
+                    <label>Jumlah Buku</label>
                     <input type="text" name="stock" value="<?= set_value('stock') ?>" class="form-control">
                     <small class="text-danger"><?= form_error('stock') ?></small>
                 </div>
@@ -222,7 +222,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Stock</label>
+                    <label>Jumlah Buku</label>
                     <input type="text" name="stock" class="form-control" value="<?=$b->stock ?>">
                 </div>
 

@@ -30,6 +30,12 @@ class Mainmodel extends CI_Model {
 		}
 	}
 
+	function ganti_pass($where,$data,$table)
+	{
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+
 	function tampil_data(){
 		return $this->db->get('pegawai');
 	}
